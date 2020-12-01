@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+{%csrf_token%}
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <link rel="stylesheet" href="{% static 'css/authentication.css' %}" />
+</head>
+
+<body>
+
+
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form method="POST" action="#">
+                <h1>Create Account</h1>
+                {{form.name}}
+                {{form.email}}
+                {{form.password}}
+                <button>Sign Up</button>
+                <br>
+                {%for message in messages%}
+                <p style="color:red;">{{message}}</p>
+                {%endfor%}
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    container.classList.add("right-panel-active");
+    
+
+    signInButton.addEventListener('click', () => {
+        window.location.href = "{%url 'login'%}";
+    });
+</script>
