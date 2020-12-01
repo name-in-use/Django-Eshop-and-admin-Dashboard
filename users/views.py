@@ -10,7 +10,7 @@ def User_Login(request):
     if request.method == "POST":
         form = LoginForm(request.POST or None)
         if form.is_valid():
-            #get submitted data
+            #get submitted data from form
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
             print(email, password)
@@ -34,6 +34,7 @@ def User_Register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
+            #get submitted data from form
             email = form.cleaned_data.get('email')
             if Users.objects.filter(email=email).exists():
                 messages.info(request, 'Email already exists')
