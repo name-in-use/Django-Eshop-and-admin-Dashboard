@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .forms import LoginForm, RegisterForm
 from .models import Users
 from django.contrib import messages
+from django.template.loader import render_to_string
 
 
 def User_Login(request):
@@ -11,12 +12,17 @@ def User_Login(request):
         form = LoginForm(request.POST or None)
         if form.is_valid():
             #get submitted data from form
-            email = form.cleaned_data.get('email')
+            name = form.cleaned_data.get('name')
             password = form.cleaned_data.get('password')
-            print(email, password)
+            # print(name, password)
 
-            user = Users.objects.filter(email=email, password=password)
+            user = Users.objects.filter(name=name, password=password)
+            user_email = Users.objects.get(name=name).email
+
             if user.count() > 0:
+                request.session['user'] = name
+                request.session['email']=user_email
+                
                 return redirect("/")
 
             else:

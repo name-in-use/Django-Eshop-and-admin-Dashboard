@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 
     <script type="text/javascript">
-        var user = '{{request.user}}'
+        var user = '{{user}}'
         function getToken(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -84,6 +84,7 @@
             </ul>
 
             <div class="form-inline my-2 my-lg-0">
+                <a class="navbar-brand" >{{user}}</a>
                 <a href="{% url 'login' %}" class="btn btn-warning">Login</a>
 
                 <a href="{% url 'cart' %}">
