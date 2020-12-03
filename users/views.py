@@ -14,20 +14,25 @@ def User_Login(request):
             #get submitted data from form
             name = form.cleaned_data.get('name')
             password = form.cleaned_data.get('password')
-            # print(name, password)
-
-            user = Users.objects.filter(name=name, password=password)
-            user_email = Users.objects.get(name=name).email
-
-            if user.count() > 0:
-                request.session['user'] = name
-                request.session['email']=user_email
-                
-                return redirect("/")
-
+            if name=="" and password =="":
+                del request.session['user']
+                del request.session['email']
+                request.session['user'] = "Guest User"
+                request.session['email']=""
+                return render(request,'store/store.html')
             else:
-                messages.info(request, 'Invalid credentials')
-                return redirect("/login/")
+                user = Users.objects.filter(name=name, password=password)
+                user_email = Users.objects.get(name=name).email
+
+                if user.count() > 0:
+                    request.session['user'] = name
+                    request.session['email']=user_email
+                    
+                    return redirect("/")
+
+                else:
+                    messages.info(request, 'Invalid credentials')
+                    return redirect("/login/")
 
     context = {
         'form': form
@@ -56,3 +61,10 @@ def User_Register(request):
         'form': form
     }
     return render(request, 'users/register.html', context)
+
+
+def User_Logout(request):
+    del request.session['user']
+    del request.session['email']
+    return redirect("/login/")
+

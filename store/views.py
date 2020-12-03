@@ -17,7 +17,11 @@ def store(request):
 
     products = Product.objects.all()
     # get username from session
-    user = request.session['user']
+    if 'user' in request.session:
+        user = request.session['user']
+    else:
+        user="Guest User"
+
     context = {
         'products': products,
         'user': user,
@@ -35,7 +39,10 @@ def cart(request):
     order = data['order']
     items = data['items']
     # get username from session
-    user = request.session['user']
+    if 'user' in request.session:
+        user = request.session['user']
+    else:
+        user="Guest User"
 
     context = {
         'user':user,
@@ -54,8 +61,15 @@ def checkout(request):
     order = data['order']
     items = data['items']
 
-    user = request.session['user']
-    email = request.session['email']
+    if 'user' in request.session:
+        user = request.session['user']
+    else:
+        user="Guest User"
+
+    if 'email' in request.session:
+        email = request.session['email']
+    else:
+        email=""
 
     context = {
         'user':user,
@@ -75,7 +89,7 @@ def updateItem(request):
     print('Action:', action)
     print('productId:', productId)
 
-    customer = request.user.customer
+    customer = request.user.customer 
     product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(
         customer=customer, complete=False)

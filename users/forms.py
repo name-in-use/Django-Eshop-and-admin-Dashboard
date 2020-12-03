@@ -2,7 +2,7 @@ from django import forms
 
 
 class LoginForm(forms.Form):
-    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'name'}))
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Name'}))
     password = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Password'}))
 
 

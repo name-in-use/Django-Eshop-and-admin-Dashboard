@@ -1,3 +1,5 @@
+
+
 var updateBtns = document.getElementsByClassName('update-cart')
 
 for (var i = 0; i < updateBtns.length; i++) {
@@ -7,7 +9,7 @@ for (var i = 0; i < updateBtns.length; i++) {
         console.log('product id:', productId, 'action:', action)
         
         console.log('USER', user)
-        if (user == 'AnonymousUser') {
+        if (user != 'AnonymousUser') {
             addCookieItem(productId, action)
         }
         else {

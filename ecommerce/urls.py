@@ -28,6 +28,7 @@ urlpatterns = [
 
     # user
     path('login/', csrf_exempt(user_view.User_Login), name="login"),
+    path('logedout/', csrf_exempt(user_view.User_Logout), name="logout"),
     path('register/', csrf_exempt(user_view.User_Register), name="register")
 
 ]

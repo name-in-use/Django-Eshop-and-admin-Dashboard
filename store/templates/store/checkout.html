@@ -45,8 +45,8 @@
         <br>
         <div class="box-element hidden" id="payment-info">
             <small>Paypal Options</small>
-            <div id="paypal-button-container"></div>
-            <!-- <button id="make-payment">Make Payment</button> -->
+            <!-- <div id="paypal-button-container"></div> -->
+            <button id="make-payment">Make Payment</button>
 
         </div>
 
@@ -120,9 +120,10 @@
         document.getElementById("shipping-info").innerHTML = ''
     }
 
-    if (user == 'AnonymousUser') {
+    if (user != 'AnonymousUser') {
         document.getElementById("user-info").innerHTML = ''
     }
+    
 
     if (shipping == 'False' && user != 'AnonymousUser') {
         document.getElementById('form-wrapper').classList.add("hidden")
@@ -140,9 +141,11 @@
 
     })
 
-    // document.getElementById('make-payment').addEventListener('click', function (e) {
-    //     submitFormData()
-    // })
+
+    //submit order
+    document.getElementById('make-payment').addEventListener('click', function (e) {
+        submitFormData()
+    })
     function submitFormData() {
         console.log("Payment button clikced")
 
