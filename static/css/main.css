@@ -46,7 +46,11 @@ input.form-control {
 	display: inline-block;
 	margin-left: 15px;
 }
-
+#profile-icon{
+	width:40px;
+	display: inline-block;
+	margin-right: 15px;
+}
 #cart-total{
 	display: block;
 	text-align: center;

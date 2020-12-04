@@ -3,9 +3,9 @@
 <html lang="en">
 
 <head>
-<style>
+    <style>
 
-</style>
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gucci</title>
@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 
     <script type="text/javascript">
-        var user = '{{request.user}}'
+        var user = '{{user}}'
         function getToken(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -75,8 +75,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mr-auto">
                 <li class="nav-item active">
-                    <a class="navbar-brand" >Search Watch</a>
-                  </li>
+                    <a class="navbar-brand">Search Watch</a>
+                </li>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -84,12 +84,14 @@
             </ul>
 
             <div class="form-inline my-2 my-lg-0">
-                <a class="navbar-brand" id ="currentuser">{{user}}</a>
-                <a href="{% url 'login' %}" id = "loginbtn" class="btn btn-warning">Login</a>
-                
-                    <a href="{% url 'logout' %}" id = "logoutbtn" class="btn btn-warning">Logout</a>
-               
-                
+                <a class="navbar-brand" id="currentuser">{{user}}</a>
+
+                <a href="{% url 'user_profile' %}">
+                    <img id="profile-icon" src="{% static 'images/user_image.png' %}">
+                </a>
+
+                <a href="{% url 'login' %}" id="loginbtn" class="btn btn-warning">Login</a>
+                <a href="{% url 'logout' %}" id="logoutbtn" class="btn btn-warning">Logout</a>
 
                 <a href="{% url 'cart' %}">
                     <img id="cart-icon" src="{% static 'images/cart.png' %}">
@@ -109,17 +111,21 @@
 
     </div>
 
-<script type="text/javascript">
-    var currentuser = document.getElementById('currentuser').innerHTML;
-    
-    if (currentuser == 'Guest User'){
-        document.getElementById('logoutbtn').classList.add('hidden');
-    }
-    else if (currentuser!='Guest User'){
-        document.getElementById('loginbtn').classList.add('hidden');
-    }
+    <script type="text/javascript">
+        //hide profile for guest user
+        if (user=='Guest User'){
+            document.getElementById('profile-icon').classList.add('hidden');
+        }
+        //hide or show login logout btns-based on user
+        var currentuser = document.getElementById('currentuser').innerHTML;
+        if (currentuser == 'Guest User') {
+            document.getElementById('logoutbtn').classList.add('hidden');
+        }
+        else if (currentuser != 'Guest User') {
+            document.getElementById('loginbtn').classList.add('hidden');
+        }
 
-</script>
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

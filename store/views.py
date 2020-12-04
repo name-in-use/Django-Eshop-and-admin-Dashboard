@@ -6,6 +6,7 @@ import json
 import datetime
 from base64 import b64encode
 import base64
+from users.models import Users
 from .utils import cookieCart, cartData, guestOrder
 # Create your views here.
 
@@ -85,11 +86,15 @@ def updateItem(request):
     data = json.loads(request.body)
     productId = data['productId']
     action = data['action']
+    
+    user = data['user']
+    customer = Users.objects.get(name=user).id
 
     print('Action:', action)
     print('productId:', productId)
-
-    customer = request.user.customer 
+    print('Customer:',customer)
+    
+    
     product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(
         customer=customer, complete=False)

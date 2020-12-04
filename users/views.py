@@ -4,7 +4,7 @@ from .forms import LoginForm, RegisterForm
 from .models import Users
 from django.contrib import messages
 from django.template.loader import render_to_string
-
+from datetime import date
 
 def User_Login(request):
     form = LoginForm()
@@ -46,12 +46,16 @@ def User_Register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             #get submitted data from form
+            name = form.cleaned_data.get('name')
             email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            date_joined=date.today()
+
             if Users.objects.filter(email=email).exists():
                 messages.info(request, 'Email already exists')
                 # return redirect("/register/")
             else:
-                Users.objects.create(**form.cleaned_data)
+                Users.objects.create(name=name,email=email,password=password,date_joined=date_joined)
                 print('user created')
                 return redirect("/login/")
         else:
@@ -68,3 +72,14 @@ def User_Logout(request):
     del request.session['email']
     return redirect("/login/")
 
+def User_Profile(request):
+    user = request.session['user']
+    email = request.session['email']
+    
+    date_joined = Users.objects.get(name=user).date_joined
+    context={
+        'user':user,
+        'email':email,
+        'date_joined':date_joined
+    }
+    return render(request, 'users/user_profile.html',context)
