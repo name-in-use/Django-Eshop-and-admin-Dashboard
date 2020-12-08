@@ -8,6 +8,7 @@ from datetime import date
 from .forms import LoginForm, RegisterForm
 from .models import Users
 from django.contrib.auth.hashers import check_password
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def User_Login(request):
@@ -18,14 +19,18 @@ def User_Login(request):
             # get submitted data from form
             name = form.cleaned_data.get('name')
             password = form.cleaned_data.get('password')
+            try:
 
-            user = Users.objects.get(name=name)
-            if check_password(password, user.password):
+                user = Users.objects.get(name=name)
+                if check_password(password, user.password):
 
-                request.session['user'] = name
-                request.session['email'] = user.email
-                return redirect("/")
-            else:
+                    request.session['user'] = name
+                    request.session['email'] = user.email
+                    return redirect("/")
+                else:
+                    messages.info(request, 'Password is incorect')
+
+            except ObjectDoesNotExist:
                 messages.info(request, 'Invalid credentials')
                 return redirect("/login/")
 

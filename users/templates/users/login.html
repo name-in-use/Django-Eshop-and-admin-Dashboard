@@ -21,11 +21,10 @@
                 {{form.password}}
                 <a href="#">Forgot your password?</a>
                 <button>Sign In</button>
-                <br>
                 {%for message in messages%}
-                <p style="color:red;">{{message}}</p>
+                <a style="color:red;">{{message}}</a>
                 {%endfor%}
-                <a href="{%url 'store' %}">Continue as a guest</a>
+                <a href="{%url 'store' %}"><h4>Continue as a guest</h4></a>
             </form>
         </div>
         <div class="overlay-container">
@@ -37,7 +36,7 @@
                 </div> -->
                 <div class="overlay-panel overlay-right">
                     <h1>Hello, Friend!</h1>
-                    <p>Enter your personal details and start journey with us</p>
+                    <p>Enter your personal details and start your shopping journey</p>
                 <button class="ghost" id="signUp">Sign Up</button>
                 </div>
             </div>

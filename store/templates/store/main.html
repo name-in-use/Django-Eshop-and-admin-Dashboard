@@ -115,7 +115,10 @@
         //hide profile for guest user
         if (user=='Guest User'){
             document.getElementById('profile-icon').classList.add('hidden');
+            document.getElementById('cart-icon').classList.add('hidden');
+            document.getElementById('cart-total').classList.add('hidden');
         }
+
         //hide or show login logout btns-based on user
         var currentuser = document.getElementById('currentuser').innerHTML;
         if (currentuser == 'Guest User') {
