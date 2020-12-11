@@ -86,6 +86,7 @@ def User_Profile(request):
     user = request.session['user']
     email = request.session['email']
 
+    
     date_joined = Users.objects.get(name=user).date_joined
     context = {
         'user': user,
