@@ -1,13 +1,14 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
-from . models import *
 from django.http import JsonResponse
+from django.db.models import Q
 import json
+from . models import *
 import datetime
 from base64 import b64encode
 import base64
 from users.models import Users
-from .utils import cookieCart, cartData, guestOrder
+from .utils import cookieCart, cartData
 # Create your views here.
 
 
@@ -21,8 +22,28 @@ def store(request):
     if 'user' in request.session:
         user = request.session['user']
     else:
-        user="Guest User"
+        user = "Guest User"
 
+    context = {
+        'products': products,
+        'user': user,
+        # 'images' :[base64.b64encode(product_image.image).decode() for product_image in products],
+        'cartItems': cartItems
+    }
+    return render(request, 'store/store.html', context)
+
+
+def searchProduct(request):
+    data = cartData(request)
+    cartItems = data['cartItems']
+    if 'user' in request.session:
+        user = request.session['user']
+    else:
+        user = "Guest User"
+
+    product_to_search = request.GET.get('product')
+    products = Product.objects.filter(Q(name__icontains=product_to_search))
+    # print(products)
     context = {
         'products': products,
         'user': user,
@@ -43,10 +64,10 @@ def cart(request):
     if 'user' in request.session:
         user = request.session['user']
     else:
-        user="Guest User"
+        user = "Guest User"
 
     context = {
-        'user':user,
+        'user': user,
         'items': items,
         'order': order,
         'cartItems': cartItems
@@ -65,16 +86,16 @@ def checkout(request):
     if 'user' in request.session:
         user = request.session['user']
     else:
-        user="Guest User"
+        user = "Guest User"
 
     if 'email' in request.session:
         email = request.session['email']
     else:
-        email=""
+        email = ""
 
     context = {
-        'user':user,
-        'email':email,
+        'user': user,
+        'email': email,
         'items': items,
         'order': order,
         'cartItems': cartItems
@@ -86,15 +107,14 @@ def updateItem(request):
     data = json.loads(request.body)
     productId = data['productId']
     action = data['action']
-    
+
     user = data['user']
     customer = Users.objects.get(name=user).id
 
     print('Action:', action)
     print('productId:', productId)
-    print('Customer:',customer)
-    
-    
+    print('Customer:', customer)
+
     product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(
         customer=customer, complete=False)
