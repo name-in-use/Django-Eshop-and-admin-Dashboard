@@ -1,0 +1,328 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Watches</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Watches Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link href="{% static 'css/store/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Custom Theme files -->
+    <link href="{% static 'css/store/style.css' %}" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+    <!--webfont-->
+    <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="{% static 'js/store/jquery-1.11.1.min.js' %}"></script>
+    <!-- start menu -->
+    <link href="{% static 'css/store/megamenu.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="{% static 'js/store/megamenu.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            $(".megamenu").megamenu();
+        });
+    </script>
+    <script src="{% static 'js/store/jquery.easydropdown.js' %}"></script>
+    <script src="{% static 'js/store/simpleCart.min.js' %}">
+    </script>
+
+    <script type="text/javascript">
+        var user = '{{user}}'
+
+        function getToken(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        let csrftoken = getToken('csrftoken');
+    </script>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="container">
+            <div class="header_top">
+                <div class="header_top_left">
+                    <div class="box_11">
+                        <a href="{% url 'cart' %}">
+                            <h4>
+                                <p>Cart: <span>{{cartItems}}</span> items</p><img src="{% static 'images/bag.png' %}" alt="" />
+                                <div class="clearfix"> </div>
+                            </h4>
+                        </a>
+                    </div>
+                    <p class="empty"><a href="" onclick="clearCart()" class="simpleCart_empty">Empty Cart</a></p>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="header_top_right">
+                    <div class="lang_list">
+                        <select tabindex="4" class="dropdown">
+							<option value="" class="label" value="">$ Us</option>
+							<option value="1">Dollar</option>
+							<option value="2">Euro</option>
+						</select>
+                    </div>
+                    <ul class="header_user_info">
+                        <a class="login" href="{% url 'user_profile' %}">
+                            <i class="user"> </i>
+                            <li class="user_desc" id="usrprofile">My Account</li>
+                        </a>
+                        <div class="clearfix"> </div>
+                    </ul>
+                    <!-- start search-->
+                    <div class="search-box">
+                        <div id="sb-search" class="sb-search">
+                            <form>
+                                <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
+                                <input class="sb-search-submit" type="submit" value="">
+                                <span class="sb-icon-search"> </span>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="header_bottom">
+                <div class="logo">
+                    <h1><a href="/"><span class="m_1">W</span>atches</a></h1>
+                </div>
+                <div class="menu">
+                    <ul class="megamenu skyblue">
+                        <li><a class="color4" href="{% url 'store' %}">Watches</a>
+                        </li>
+                        <li><a class="color10" href="{% url 'brands' %}">Brands</a></li>
+                        <li class="active grid"><a class="color3" href="">Sale</a></li>
+                        <li><a class="color7" href="{% url 'contact' %}">Contact</a></li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="container">
+            <ul class="content-home">
+                <li class="col-sm-4">
+                    <a href="{% url 'store'%}" class="item-link" title="">
+                        <div class="bannerBox">
+                            <img src="images/w6.jpg" class="item-img" title="" alt="" width="100%" height="100%">
+                            <div class="item-html">
+                                <h3>Men's<span>Watches</span></h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                                <button>Shop now!</button>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="col-sm-4">
+                    <a href="{% url 'store'%}" class="item-link" title="">
+                        <div class="bannerBox">
+                            <img src="{% static 'images/w4.jpg' %}" class="item-img" title="" alt="" width="100%" height="100%">
+                            <div class="item-html">
+                                <h3>Men's<span>Watches</span></h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                                <button>Shop now!</button>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="col-sm-4">
+                    <a href="{% url 'store'%}" class="item-link" title="">
+                        <div class="bannerBox">
+                            <img src="{% static 'images/w5.jpg' %}" class="item-img" title="" alt="" width="100%" height="100%">
+                            <div class="item-html">
+                                <h3>Men's<span>Watches</span></h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                                <button>Shop now!</button>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <div class="clearfix"> </div>
+            </ul>
+        </div>
+        <div class="middle_content">
+            <div class="container">
+                <h2>Welcome</h2>
+                <p>This website is a part of Christos Karounias Computer Science final year project. It is made using modern technologies such us Python, Django, MySQL, HTML, CSS, Bootstrap and javascript
+                </p>
+            </div>
+        </div>
+        <div class="content_middle_bottom">
+            <div class="header-left" id="home">
+                <section>
+                    <ul class="lb-album">
+                        <li>
+                            <a>
+                                <img src="images/g1.jpg" class="img-responsive" alt="image01" />
+                                <span>Sample</span>
+                            </a>
+                            <div class="lb-overlay" id="image-1">
+                                <a href="#page" class="lb-close">x Close</a>
+                                <img src="images/g1.jpg" class="img-responsive" alt="image01" />
+                                <div>
+                                    <h3>pointe <span>/point/</span></h3>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a>
+                                <img src="images/g2.jpg" class="img-responsive" alt="image02" />
+                                <span>Sample</span>
+                            </a>
+                            <div class="lb-overlay" id="image-2">
+                                <img src="images/g2.jpg" class="img-responsive" alt="image02" />
+                                <div>
+                                    <h3>Sample<span>/ˌpôr də ˈbrä/</span></h3>
+
+                                </div>
+                                <a class="lb-close">x Close</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a>
+                                <img src="images/g3.jpg" class="img-responsive" alt="image03" />
+                                <span>Sample</span>
+                            </a>
+                            <div class="lb-overlay" id="image-3">
+                                <img src="images/g3.jpg" class="img-responsive" alt="image03" />
+                                <div>
+                                    <h3>Sample <span>/plēˈā/</span></h3>
+
+                                </div>
+                                <a class="lb-close">x Close</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a ">
+								<img src="images/g4.jpg " class="img-responsive " alt="image04 " />
+								<span>Sample</span>
+							</a>
+							<div class="lb-overlay " id="image-4 ">
+								<img src="images/g4.jpg " class="img-responsive " alt="image04 " />
+								<div>
+									<h3>Sample <span>/əˈdäjō/</span></h3>
+									
+								</div>
+								<a  class="lb-close ">x Close</a>
+							</div>
+						</li>
+						<li>
+							<a >
+								<img src="images/g5.jpg " class="img-responsive " alt="image05 " />
+								<span>Sample</span>
+							</a>
+							<div class="lb-overlay " id="image-5 ">
+								<img src="images/g5.jpg " class="img-responsive " alt="image05 " />
+								<div>
+									<h3>Sample<span>/fraˈpā/</span></h3>
+									
+								</div>
+								<a  class="lb-close ">x Close</a>
+							</div>
+						</li>
+						<li>
+							<a >
+								<img src="images/g6.jpg " class="img-responsive " alt="image06 " />
+								<span>Sample</span>
+							</a>
+							<div class="lb-overlay " id="image-6 ">
+								<img src="images/g6.jpg " class="img-responsive " alt="image06 " />
+								<div>
+									<h3>Sample <span>/gliˈsäd/</span></h3>
+									
+								</div>
+								<a class="lb-close ">x Close</a>
+							</div>
+						</li>
+						<li>
+							<a >
+								<img src="images/g7.jpg " class="img-responsive " alt="image07 " />
+								<span>Sample</span>
+							</a>
+							<div class="lb-overlay " id="image-7 ">
+								<img src="images/g7.jpg " class="img-responsive " alt="image07 " />
+								<div>
+									<h3>Sample <span>/zhə-ˈtā/</span></h3>
+									
+								</div>
+								<a class="lb-close ">x Close</a>
+							</div>
+						</li>
+						<li>
+							<a>
+								<img src="images/g8.jpg " class="img-responsive " alt="image08 " />
+								<span>Sample</span>
+							</a>
+							<div class="lb-overlay " id="image-8 ">
+								<img src="images/g8.jpg " class="img-responsive " alt="image08 " />
+								<div>
+									<h3>Sample<span>/pēˈkā/</span></h3>
+									
+								</div>
+								<a  class="lb-close ">x Close</a>
+							</div>
+						</li>
+						<div class="clearfix "></div>
+					</ul>
+				</section>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="map ">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50310.55761007411!2d23.703319956617158!3d37.99089965317667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd1f067043f1%3A0x2736354576668ddd!2zzpHOuM6uzr3OsQ!5e0!3m2!1sel!2sgr!4v1608031317837!5m2!1sel!2sgr "> </iframe>
+	</div>
+	<div class="footer ">
+		<div class="container ">
+			<div class="newsletter ">
+				<h3>Newsletter</h3>
+				<p>Subscribe to our newsletter and stay updated on the latest special offers!</p>
+				<form>
+					<input type="text ">
+					<input type="submit " value="SUBSCRIBE ">
+				</form>
+			</div>
+			<ul class="social ">
+				<li><a href=" "> <i class="instagram "> </i> </a></li>
+				<li><a href=" "><i class="fb "> </i> </a></li>
+				<li><a href=" "><i class="tw "> </i> </a></li>
+			</ul>
+			<div class="clearfix "></div>
+		</div>
+	</div>
+	<script type="text/javascript " src="{% static 'js/store/cart.js' %} "></script>
+	<script type=text/javascript>
+		var profile = document.getElementById('usrprofile');
+		if (user!='Guest User')
+			profile.innerHTML = "Profile ";
+		
+	</script>
+</body>
+
+</html>

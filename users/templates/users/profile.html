@@ -1,0 +1,235 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Watches </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Watches Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Custom Theme files -->
+    <link href="{% static 'css/store/style.css' %}" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+    <!--webfont-->
+    <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="{% static 'js/store/jquery-1.11.1.min.js' %}"></script>
+    <!-- start menu -->
+    <link href="{% static 'css/store/megamenu.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="{% static 'js/store/megamenu.js' %}"></script>
+
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+
+    <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css" />
+
+
+
+    <script type="text/javascript">
+        function getCookie(name) {
+            //split string and get all induvidual name=value pairs in array
+            var cookieArr = document.cookie.split(';');
+            //loop though array elements
+            for (var i = 0; i < cookieArr.length; i++) {
+                var cookiePair = cookieArr[i].split("=");
+
+                //removing whitespace at the beginning of the cookie name and compare it with the given string
+                if (name == cookiePair[0].trim()) {
+                    //decode cookie value and return
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            //return null if not found
+            return null;
+        }
+
+        var cart = JSON.parse(getCookie('cart'));
+        if (cart == undefined) {
+            cart = {}
+            console.log("cart was created")
+            document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/"
+        }
+        console.log("cart:", cart);
+    </script>
+</head>
+
+<body>
+    <div class="men_banner">
+        <div class="container">
+
+            <div class="header_bottom">
+                <div class="logo">
+                    <h1><a href="{% url 'home_page' %}"><span class="m_1">W</span>atches</a></h1>
+                </div>
+                <div class="menu">
+                    <ul class="megamenu skyblue">
+                        <li>
+                            <div class="megapanel">
+                                <div class="row">
+                                    <div class="col2">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a class="color4" style="font-family: PT Sans Narrow" href="{% url 'store' %}">Watches</a>
+
+                        </li>
+                        <li class="active grid"><a style="font-family: PT Sans Narrow" class="color10" href="{% url 'brands' %}">Brands</a></li>
+                        <li><a class="color3" style="font-family: PT Sans Narrow" href="">Sale</a></li>
+                        <li><a class="color7" style="font-family: PT Sans Narrow" href="{% url 'contact' %}">Contact</a></li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="card-title mb-4">
+                            <div class="d-flex justify-content-start">
+                                <div class="image-container">
+                                    <img src="{% static 'images/user_image.png' %}" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
+                                </div>
+                                <div class="userData ml-3">
+                                    <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">{{user}}</h2>
+                                </div>
+                                <div class="ml-auto">
+                                    <a class="btn btn-outline-dark" onclick="logoutMSG()" href="{% url 'logout' %}">&#x2190; Log Out</a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="connectedServices-tab" data-toggle="tab" href="#connectedServices" role="tab" aria-controls="connectedServices" aria-selected="false">Your orders</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content ml-1" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">User Name</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{user}}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Email</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{email}}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Date Joined</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{date_joined}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- user orders -->
+                                    <div class="tab-pane fade" id="connectedServices" role="tabpanel" aria-labelledby="ConnectedServices-tab">
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">User Name</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{user}}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="newsletter">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter and stay updated on the latest special offers!</p>
+                <form>
+                    <input type="text">
+                    <input type="submit" value="SUBSCRIBE">
+                </form>
+            </div>
+
+            <ul class="social">
+                <li>
+                    <a href=""> <i class="instagram"> </i> </a>
+                </li>
+                <li><a href=""><i class="fb"> </i> </a></li>
+                <li><a href=""><i class="tw"> </i> </a></li>
+            </ul>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static 'js/store/cart.js'  %}"></script>
+
+    <script>
+        function logoutMSG() {
+            cart = {}
+            location.reload()
+            document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/"
+            alert('You are now loged out')
+
+
+            var profile = document.getElementById('usrprofile');
+            if (user != 'Guest User')
+                profile.innerHTML = "Profile ";
+        }
+    </script>
+
+
+
+</body>
+
+</html>
