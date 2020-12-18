@@ -7,6 +7,7 @@ from datetime import date
 from store.utils import cookieCart, cartData
 from .forms import LoginForm, RegisterForm
 from .models import Users
+from store.models import Order, OrderItem, Product
 from django.contrib.auth.hashers import check_password
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -100,10 +101,27 @@ def User_Profile(request):
             user = request.session['user']
             email = request.session['email']
             date_joined = Users.objects.get(name=user).date_joined
-        
+
+            # get user orders
+            customer_id = Users.objects.get(name=user).id
+            products = OrderItem.objects.filter(customer_id=customer_id)
+            orders=[]
+            for product in products:
+                item={
+                    'item':Product.objects.get(id=product.id).name,
+                    'quantity':product.quantity,
+                    'date_ordered':product.date_added
+                }
+                orders.append(item)
+
+            for x in orders:
+                print(x['item'], x['quantity'],x['date_ordered'])
+           
+
     context = {
         'user': user,
         'email': email,
-        'date_joined': date_joined
+        'date_joined': date_joined,
+        'orders': orders
     }
     return render(request, 'users/profile.html', context)

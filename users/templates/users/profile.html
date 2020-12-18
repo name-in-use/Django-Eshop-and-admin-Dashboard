@@ -169,14 +169,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                     <!-- user orders -->
                                     <div class="tab-pane fade" id="connectedServices" role="tabpanel" aria-labelledby="ConnectedServices-tab">
+                                        {% for order in orders %}
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">User Name</label>
+                                                <label style="font-weight:bold;">Product name: {{order.item}}</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                {{user}}
+                                                Quantity: {{order.quantity}}
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                Date Ordered: {{order.date_ordered}}
                                             </div>
                                         </div>
+                                        <hr> {%endfor%}
+
 
                                     </div>
                                 </div>

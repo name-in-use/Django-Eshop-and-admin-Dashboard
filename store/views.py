@@ -34,7 +34,7 @@ def brands(request):
     if 'user' in request.session:
         user = request.session['user']
     else:
-        request.session['user'] = "Guest User"
+        user = "Guest User"
 
     context = {
         'user': user,
@@ -78,7 +78,7 @@ def searchProduct(request):
     context = {
         'products': products,
         'user': user,
-        'cartItems':cartItems
+        'cartItems': cartItems
     }
     return render(request, 'store/watches.html', context)
 
@@ -89,7 +89,7 @@ def contactUs(request):
     if 'user' in request.session:
         user = request.session['user']
     else:
-        request.session['user'] = "Guest User"
+        user = "Guest User"
     context = {
         'user': user,
         'cartItems': cartItems
@@ -116,8 +116,6 @@ def contactUs(request):
 #     return render(request, 'store/store.html', context)
 
 
-
-
 def cart(request):
 
    # call method from utils.py
@@ -129,7 +127,7 @@ def cart(request):
     if 'user' in request.session:
         user = request.session['user']
     else:
-        request.session['user'] = "Guest User"
+        user = "Guest User"
 
     context = {
         'user': user,

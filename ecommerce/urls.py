@@ -27,11 +27,12 @@ urlpatterns = [
     path('', include('store.urls')),
 
     # user
-    path('profile/', csrf_exempt(user_view.User_Profile), name="user_profile"),
     path('login/', csrf_exempt(user_view.User_Login), name="login"),
+    path('register/', csrf_exempt(user_view.User_Register), name="register"),
     path('logedout/', csrf_exempt(user_view.User_Logout), name="logout"),
-    path('register/', csrf_exempt(user_view.User_Register), name="register")
-
+    path('profile/', csrf_exempt(user_view.User_Profile), name="user_profile"),
+   
+    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

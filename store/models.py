@@ -70,6 +70,8 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
+    customer = models.ForeignKey(
+        User, on_delete=models.SET_NULL, blank=True, null=True)
     product = models.ForeignKey(
         Product, on_delete=models.SET_NULL, blank=True, null=True)
     order = models.ForeignKey(
