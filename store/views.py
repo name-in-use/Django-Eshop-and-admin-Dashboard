@@ -64,6 +64,25 @@ def store(request):
     return render(request, 'store/watches.html', context)
 
 
+def searchProduct(request):
+    data = cartData(request)
+    cartItems = data['cartItems']
+    if 'user' in request.session:
+        user = request.session['user']
+    else:
+        user = "Guest User"
+
+    product_to_search = request.GET.get('product')
+
+    products = Product.objects.filter(Q(name__icontains=product_to_search))
+    context = {
+        'products': products,
+        'user': user,
+        'cartItems':cartItems
+    }
+    return render(request, 'store/watches.html', context)
+
+
 def contactUs(request):
     data = cartData(request)
     cartItems = data['cartItems']
@@ -76,6 +95,7 @@ def contactUs(request):
         'cartItems': cartItems
     }
     return render(request, 'store/contact.html', context)
+
 # def searchProduct(request):
 #     data = cartData(request)
 #     cartItems = data['cartItems']
@@ -94,6 +114,8 @@ def contactUs(request):
 #         'cartItems': cartItems
 #     }
 #     return render(request, 'store/store.html', context)
+
+
 
 
 def cart(request):
@@ -181,12 +203,11 @@ def processOrder(request):
     transaction_id = datetime.datetime.now().timestamp()
     data = json.loads(request.body)
 
-    
     # customer=Customer.objects.get(name=request.session['user'])
     # print(customer)
     # order = Order.objects.get_or_create(
     #     customer=customer, complete=False)
-    customer, order,customer_id= guestOrder(request, data)
+    customer, order, customer_id = guestOrder(request, data)
 
     total = float(data['form']['total'])
     order.transaction_id = transaction_id
@@ -194,7 +215,7 @@ def processOrder(request):
     if total == order.get_cart_total:
         order.complete = True
     order.save()
-    
+
     ShippingAddress.objects.create(
         customer=customer_id,
         order=order,
