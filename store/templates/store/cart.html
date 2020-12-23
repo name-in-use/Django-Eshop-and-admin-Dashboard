@@ -6,37 +6,15 @@
     <title>Watches</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Watches Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-    <script type="application/x-javascript">
-        addEventListener("load", function() {
-            setTimeout(hideURLbar, 0);
-        }, false);
 
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
     <link href="{% static 'css/store/bootstrap.css' %}" rel='stylesheet' type='text/css' />
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- Custom Theme files -->
     <link href="{% static 'css/store/style.css' %}" rel='stylesheet' type='text/css' />
-    <!-- Custom Theme files -->
-    <!--webfont-->
     <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="{% static 'js/store/jquery-1.11.1.min.js' %}"></script>
-    <!-- start menu -->
     <link href="{% static 'css/store/megamenu.css' %}" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="{% static 'js/store/megamenu.js' %}"></script>
-    <script>
-        $(document).ready(function() {
-            $(".megamenu").megamenu();
-        });
-    </script>
     <script src="{% static 'js/store/jquery.easydropdown.js' %}"></script>
-    <script src="{% static 'js/store/simpleCart.min.js' %}">
-    </script>
 
 
     <script type="text/javascript">
@@ -178,32 +156,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                     </div>
                     {% endfor %}
-
-                    <!-- <div class="cart-header2">
-						<div class="close2"> </div>
-						<div class="cart-sec simpleCart_shelfItem">
-							<div class="cart-item cyc">
-								<img src="images/m4.jpg" class="img-responsive" alt="" />
-							</div>
-							<div class="cart-item-info">
-								<h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
-								<ul class="qty">
-									<li>
-										<p>Size : 5</p>
-									</li>
-									<li>
-										<p>Qty : 1</p>
-									</li>
-								</ul>
-								<div class="delivery">
-									<p>Service Charges : Rs.100.00</p>
-									<span>Delivered in 2-3 business days</span>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div> -->
                 </div>
                 <div class="col-md-3 cart-total">
                     <a class="continue" href="{% url 'store' %}">Continue shopping</a>

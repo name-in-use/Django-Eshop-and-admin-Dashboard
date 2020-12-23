@@ -12,6 +12,42 @@ from .utils import cookieCart, cartData, guestOrder
 # Create your views here.
 
 
+def view_omega_brand(request):
+    data = cartData(request)
+    cartItems = data['cartItems']
+    if 'user' in request.session:
+        user = request.session['user']
+    else:
+        user = "Guest User"
+
+    products = Product.objects.filter(Q(name__icontains="omega"))
+
+    context = {
+        'products': products,
+        'user': user,
+        'cartItems': cartItems
+    }
+    return render(request, 'store/watches.html', context)
+
+
+def view_gucci_brand(request):
+    data = cartData(request)
+    cartItems = data['cartItems']
+    if 'user' in request.session:
+        user = request.session['user']
+    else:
+        user = "Guest User"
+
+    products = Product.objects.filter(Q(name__icontains="gucci"))
+
+    context = {
+        'products': products,
+        'user': user,
+        'cartItems': cartItems
+    }
+    return render(request, 'store/watches.html', context)
+
+
 def home_page(request):
     data = cartData(request)
     cartItems = data['cartItems']
