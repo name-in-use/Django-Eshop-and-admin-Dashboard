@@ -86,7 +86,7 @@ a.checkoutbtn {
 }
 
 .banner {
-    background: url("/static/images/indexBackround.jpg") no-repeat center top;
+    background: url("/static/images/modelx.jpg") no-repeat center top;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -1374,7 +1374,7 @@ ul.social li a i.tw {
 }
 
 .men_banner {
-    background: url("/static/images/indexBackround.jpg") no-repeat center top;
+    background: url("/static/images/modelx.jpg") no-repeat center top;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
