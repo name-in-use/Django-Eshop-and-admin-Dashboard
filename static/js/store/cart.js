@@ -21,17 +21,6 @@ for (var i = 0; i < updateBtns.length; i++) {
 
     })
 
-
-
-    // console.log('USER:', user)
-    // if (user == "Guest User") {
-    //     addCookieItem(productId, action)
-    // }
-    // else {
-
-    //     updateUserOrder(productId, action)
-    // }
-
 }
 
 
