@@ -16,7 +16,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+ALLOWED_HOSTS = ['192.168.2.5','localhost', '127.0.0.1','192.168.2.6']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -26,7 +26,6 @@ SECRET_KEY = '6f)gw34tpj0)csjk#69o0z@4*p=k(mt$3*7(495y(a^!xq&8$t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 #The Hasher you are using
@@ -44,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'store.apps.StoreConfig',
-    'users'
+    'users',
+    'admin_panel',
 ]
 
 MIDDLEWARE = [

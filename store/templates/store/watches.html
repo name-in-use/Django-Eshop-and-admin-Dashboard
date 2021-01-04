@@ -141,7 +141,7 @@
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim</p>
                     </div>
                     <div class="right-side col-xs-12 col-sm-4">
-                        <p><a href="#">Price: {{product.price|floatformat:2}}$</a></p>
+                        <p>Price: {{product.price|floatformat:2}}$</p>
                         <!-- <a href="#" class="btn btn1 btn-primary btn-normal btn-inline " target="_self">Add to cart</a> -->
                         <button data-product={{product.id}} data-action="add" class="btn btn1 btn-primary update-cart">Add to cart</button>
 
@@ -175,7 +175,7 @@
                     <div class="clearfix"> </div>
                 </ul>
                 <ul class="product">
-                    <li class="product_img"><img src="{% static 'images/m2.jpg' %}" class="img-responsive" alt="" />
+                    <li class="product_img"><img src="{% static 'images/m5.jpg' %}" class="img-responsive" alt="" />
                     </li>
                     <li class="product_desc">
                         <h4><a href="#">Omega Watch</a></h4>
@@ -186,7 +186,7 @@
                     <div class="clearfix"> </div>
                 </ul>
                 <ul class="product">
-                    <li class="product_img"><img src="{% static 'images/m3.jpg' %}" class="img-responsive" alt="" />
+                    <li class="product_img"><img src="{% static 'images/m6.jpg' %}" class="img-responsive" alt="" />
                     </li>
                     <li class="product_desc">
                         <h4><a href="#">Omega Watch</a></h4>
@@ -228,6 +228,17 @@
         if (user != 'Guest User') {
             profile.innerHTML = "Profile ";
         }
+
+        var searchbox = document.getElementById('mysearch')
+        var searchBTN = document.getElementById('search-btn')
+
+        searchBTN.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (searchbox == " ") {
+                alert('sss');
+            }
+
+        })
     </script>
 </body>
 

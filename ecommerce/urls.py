@@ -26,6 +26,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('store.urls')),
 
+    #admin
+    path('adminpanel/', include('admin_panel.urls')),
+
     # user
     path('login/', csrf_exempt(user_view.User_Login), name="login"),
     path('register/', csrf_exempt(user_view.User_Register), name="register"),
