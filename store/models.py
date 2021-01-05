@@ -87,7 +87,7 @@ class OrderItem(models.Model):
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(
-        User, on_delete=models.SET_NULL, blank=True, null=True)
+        User, on_delete=models.SET_NULL, blank=True, null=True, related_name="addresses")
     order = models.ForeignKey(
         Order, on_delete=models.SET_NULL, blank=True, null=True)
     address = models.CharField(max_length=200, null=True)
