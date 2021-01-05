@@ -167,6 +167,7 @@
                                                 <th>State</th>
                                                 <th>Address</th>
                                                 <th>Zipcode</th>
+                                                <th>Status</th>
 
 
                                             </tr>
@@ -186,6 +187,7 @@
                                                 <td>{{order.customer.addresses.first.state}}</td>
                                                 <td>{{order.customer.addresses.first.address}}</td>
                                                 <td>{{order.customer.addresses.first.zipcode}}</td>
+                                                <td><button data-order={{order.order_id}} type="button" id="statusBTN" class="btn btn-success">Success</button></td>
 
 
 
@@ -219,6 +221,52 @@
     <script src="{% static 'vendor/chartist/js/chartist.min.js' %}"></script>
     <script src="{% static 'scripts/klorofil-common.js' %}"></script>
     <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+
+
+        var statusbutton = document.getElementsByClassName('btn')
+        for (var i = 0; i < statusbutton.length; i++) {
+
+            statusbutton[i].addEventListener('click', function() {
+                var orderid = this.dataset.order
+                console.log(orderid)
+                fetch('/adminpanel/update_order_status/', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json, text/plain, */*',
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': csrftoken,
+                        },
+                        body: JSON.stringify({
+                            'orderid': orderid
+                        }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            })
+        }
+
+
         $(function() {
             var data, options;
 
