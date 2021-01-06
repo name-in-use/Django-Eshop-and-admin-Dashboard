@@ -5,6 +5,8 @@ import json
 
 from store.models import *
 from users.models import *
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 
@@ -39,20 +41,36 @@ def admin_panel(request):
 
 def update_order_status(request):
     data = json.loads(request.body.decode("utf-8"))
-
     print(data['orderid'])
-    # orderID = OrderItem.objects.filter(order_id=data['orderid'])
-
-    # for order in orderID:
-    #    order = Order.objects.get(id=orderID)
-    #    order.complete = 1
-    #    order.save()
-
     order_items = OrderItem.objects.filter(order_id=data['orderid']) 
-
-
     for order_item in order_items:
        order = order_item.order
        order.complete = True
        order.save()
     return JsonResponse(data)
+
+#------------Product managment---------------#
+def products(request):
+    products = Product.objects.all()
+    context = {
+        'products': products
+    }
+    return render(request, 'products.html',context)
+
+@csrf_exempt
+def makeChanges(request):
+    if request.method =='POST':
+        productID = request.POST['productid']
+        productNAME = request.POST['productname']
+        productPRICE = request.POST['productprice']
+        print(productNAME, productPRICE, productID)
+    # data = json.loads(request.body.decode("utf-8"))
+    # productID= data['productid']
+
+    # print(productID,productNAME)
+    # return JsonResponse(data)
+
+    return HttpResponseRedirect('/adminpanel/products/')
+
+
+
