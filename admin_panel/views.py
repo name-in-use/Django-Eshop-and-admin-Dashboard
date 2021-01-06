@@ -64,11 +64,11 @@ def makeChanges(request):
         productNAME = request.POST['productname']
         productPRICE = request.POST['productprice']
         print(productNAME, productPRICE, productID)
-    # data = json.loads(request.body.decode("utf-8"))
-    # productID= data['productid']
 
-    # print(productID,productNAME)
-    # return JsonResponse(data)
+        product = Product.objects.get(id=productID)
+        product.name=productNAME
+        product.price=productPRICE
+        product.save()
 
     return HttpResponseRedirect('/adminpanel/products/')
 
