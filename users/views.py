@@ -10,6 +10,7 @@ from .models import Users
 from store.models import Order, OrderItem, Product
 from django.contrib.auth.hashers import check_password
 from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import get_object_or_404
 
 
 def User_Login(request):
@@ -105,10 +106,17 @@ def User_Profile(request):
             # get user orders
             customer_id = Users.objects.get(name=user).id
             products = OrderItem.objects.filter(customer_id=customer_id)
-            orders=[]
+            orders = []
+
             for product in products:
+                
+                # try:
+                #     item = Product.objects.get(id=product.id).name
+                # except Product.DoesNotExist:
+                #     item = "None"
+                    
                 item={
-                    'item':Product.objects.get(id=product.id).name,
+                    'item':product.product.name,
                     'quantity':product.quantity,
                     'date_ordered':product.date_added
                 }

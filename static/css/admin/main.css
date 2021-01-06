@@ -885,10 +885,15 @@ fieldset[disabled] .btn {
     padding-right: 25px;
 }
 
+.panel .tablepanel-body {
+    width: 500px;
+}
+
 .panel .panel-heading {
     padding-top: 20px;
     padding-bottom: 20px;
     position: relative;
+    width: 500px;
 }
 
 .panel .panel-heading .panel-title {

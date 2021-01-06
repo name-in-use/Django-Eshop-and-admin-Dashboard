@@ -48,7 +48,7 @@ def update_order_status(request):
     #    order.complete = 1
     #    order.save()
 
-    order_items = OrderItem.objects.filter(order_id=data['orderid'])
+    order_items = OrderItem.objects.filter(order_id=data['orderid']) 
 
 
     for order_item in order_items:

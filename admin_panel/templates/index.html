@@ -49,32 +49,11 @@
                                 <i class="lnr lnr-alarm"></i>
                                 <span class="badge bg-danger">5</span>
                             </a>
-                            <ul class="dropdown-menu notifications">
-                                <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
-                                <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
-                                <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
-                                <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
-                                <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
-                                <li><a href="#" class="more">See all notifications</a></li>
-                            </ul>
                         </li>
+                        <li class="dropdown"></li>
+
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Basic Use</a></li>
-                                <li><a href="#">Working With Data</a></li>
-                                <li><a href="#">Security</a></li>
-                                <li><a href="#">Troubleshooting</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'images/admin/user.png' %}" class="img-circle" alt="Avatar"> <span>Admin</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-                                <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-                                <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-                                <li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
-                            </ul>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'images/admin/user.png' %}" class="img-circle" alt="Avatar"> <span>Admin</span></a>
                         </li>
 
                     </ul>
@@ -146,7 +125,7 @@
                     </div>
                     <!-- END OVERVIEW -->
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="container-fluid">
                             <!-- RECENT PURCHASES -->
                             <div class="panel">
                                 <div class="panel-heading">
@@ -179,6 +158,8 @@
 
                                                 <td>{{ order.customer.name }}</td>
 
+
+
                                                 <td>{{order.date_added}}</td>
                                                 <td>{{order.product_id}}</td>
                                                 <td>{{order.quantity}}</td>
@@ -187,7 +168,12 @@
                                                 <td>{{order.customer.addresses.first.state}}</td>
                                                 <td>{{order.customer.addresses.first.address}}</td>
                                                 <td>{{order.customer.addresses.first.zipcode}}</td>
+                                                {% if order.order.complete %}
+                                                <td>DONE</td>
+                                                {% else %}
                                                 <td><button data-order={{order.order_id}} type="button" id="statusBTN" class="btn btn-success">Success</button></td>
+                                                {% endif %}
+
 
 
 
@@ -263,6 +249,7 @@
                     .catch((error) => {
                         console.error('Error:', error);
                     });
+                location.reload()
             })
         }
 
