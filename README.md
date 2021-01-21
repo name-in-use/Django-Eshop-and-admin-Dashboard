@@ -18,5 +18,5 @@
 
 ## Admin Dashboard
 - View: total orders,total products selled ,total income
-- View user purchaces
+- View user purchaces and update order status
 - Edit store products
