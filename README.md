@@ -15,3 +15,8 @@
 - User cart is made with cookies
 - User can specify the quantity of a product before purchase
 - Order data are sent to the backend using Fetch API
+
+## Admin Dashboard
+- View: total orders,total products selled ,total income
+- View user purchaces
+- Edit store products
