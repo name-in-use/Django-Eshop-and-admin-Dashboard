@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import json
+from django.db.models import Sum
 
 from store.models import *
 from users.models import *
@@ -9,7 +10,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect
 # Create your views here.
 
-#ADMIN PANEL HOME
+# ADMIN PANEL HOME
+
+
 def admin_panel(request):
 
     orders = OrderItem.objects.select_related(
@@ -25,52 +28,56 @@ def admin_panel(request):
         total = productPrice*Product_quantity
         totalIncome += total
 
-    totalProductsSelled = OrderItem.objects.values('order').count()
+    # totalProductsSelled = OrderItem.objects.values('order').count()
+    totalProductsSelled = OrderItem.objects.aggregate(Sum('quantity'))
+    # print(totalProductsSelled)
     totalOrders = OrderItem.objects.values('order').distinct().count()
 
     context = {
         'orders': orders,
         'total_income': totalIncome,
-        'total_products_selled': totalProductsSelled,
+        'total_products_selled': totalProductsSelled['quantity__sum'],
         'total_orders': totalOrders
 
     }
 
     return render(request, 'index.html', context)
 
-#update an order status to DONE
+# update an order status to DONE
+
+
 def update_order_status(request):
     data = json.loads(request.body.decode("utf-8"))
     print(data['orderid'])
-    order_items = OrderItem.objects.filter(order_id=data['orderid']) 
+    order_items = OrderItem.objects.filter(order_id=data['orderid'])
     for order_item in order_items:
-       order = order_item.order
-       order.complete = True
-       order.save()
+        order = order_item.order
+        order.complete = True
+        order.save()
     return JsonResponse(data)
 
 #------------Product managment---------------#
+
+
 def products(request):
     products = Product.objects.all()
     context = {
         'products': products
     }
-    return render(request, 'products.html',context)
+    return render(request, 'products.html', context)
+
 
 @csrf_exempt
 def makeChanges(request):
-    if request.method =='POST':
+    if request.method == 'POST':
         productID = request.POST['productid']
         productNAME = request.POST['productname']
         productPRICE = request.POST['productprice']
         print(productNAME, productPRICE, productID)
 
         product = Product.objects.get(id=productID)
-        product.name=productNAME
-        product.price=productPRICE
+        product.name = productNAME
+        product.price = productPRICE
         product.save()
 
     return HttpResponseRedirect('/adminpanel/products/')
-
-
-
