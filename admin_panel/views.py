@@ -44,8 +44,6 @@ def admin_panel(request):
     return render(request, 'index.html', context)
 
 # update an order status to DONE
-
-
 def update_order_status(request):
     data = json.loads(request.body.decode("utf-8"))
     print(data['orderid'])
@@ -54,6 +52,23 @@ def update_order_status(request):
         order = order_item.order
         order.complete = True
         order.save()
+    return JsonResponse(data)
+
+def registered_users(request):
+
+    users = Users.objects.all()
+    context = {
+        'users': users
+    }
+    return render(request, 'users.html', context)
+
+
+def deleteUsers(request):
+    data = json.loads(request.body.decode("utf-8"))
+    userID=data['userID']
+
+    user = Users.objects.get(id=userID).delete()
+
     return JsonResponse(data)
 
 #------------Product managment---------------#
@@ -83,19 +98,4 @@ def makeChanges(request):
     return HttpResponseRedirect('/adminpanel/products/')
 
 
-def registered_users(request):
 
-    users = Users.objects.all()
-    context = {
-        'users': users
-    }
-    return render(request, 'users.html', context)
-
-
-def deleteUsers(request):
-    data = json.loads(request.body.decode("utf-8"))
-    userID=data['userID']
-
-    user = Users.objects.get(id=userID).delete()
-
-    return JsonResponse(data)
