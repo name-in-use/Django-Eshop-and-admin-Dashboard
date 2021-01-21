@@ -81,3 +81,21 @@ def makeChanges(request):
         product.save()
 
     return HttpResponseRedirect('/adminpanel/products/')
+
+
+def registered_users(request):
+
+    users = Users.objects.all()
+    context = {
+        'users': users
+    }
+    return render(request, 'users.html', context)
+
+
+def deleteUsers(request):
+    data = json.loads(request.body.decode("utf-8"))
+    userID=data['userID']
+
+    user = Users.objects.get(id=userID).delete()
+
+    return JsonResponse(data)

@@ -29,7 +29,7 @@
         <!-- NAVBAR -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="brand">
-                <a href="index.html"><img src="{% static 'images/admin/logo-dark.png' %}" alt="Klorofil Logo" class="img-responsive logo"></a>
+                <a href="index.html"><img src="{% static 'images/admin/admin.jpg' %}" alt="Klorofil Logo" class="img-responsive logo"></a>
             </div>
             <div class="container-fluid">
                 <div class="navbar-btn">
@@ -66,7 +66,7 @@
             <div class="sidebar-scroll">
                 <nav>
                     <ul class="nav">
-                        <li><a href="{%url 'admin_panel'%}" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                        <li><a href="{%url 'admin_panel'%}v" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                         <li><a href="{%url 'products' %}" class=""><i class="lnr lnr-code"></i> <span>Products</span></a></li>
                         <li><a href="{%url 'registered_users' %}" class=""><i class="lnr lnr-chart-bars"></i> <span>Users</span></a></li>
                         <li><a href="" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
@@ -94,92 +94,50 @@
             <!-- MAIN CONTENT -->
             <div class="main-content">
                 <div class="container-fluid">
-                    <h3 class="page-title">Products</h3>
-                    <div class="row"> </div>
-                    <div class="col-md-4">
-                        <!-- PANEL NO CONTROLS -->
-                        {%for product in products%}
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Product name: {{product.name}} </h3>
-                            </div>
-                            <div class="panel-body">
 
-                                <form method="POST" action="{% url 'makeChanges' %}">
-                                    {% csrf_token %}
-                                    <div class="input-group">
-                                        <input hidden type="text" name="productid" value="{{product.id}}">
-                                        <input type="text" name="productname" value="{{product.name}}" class="form-control" placeholder="Product name">
-                                        <input type="text" name="productprice" value="{{product.price}}" class="form-control" placeholder="Product price">
-
-                                    </div>
-                                    <br>
-                                    <button type="submit" class="makeChangebtn btn-primary">Submit changes</button>
-                                </form>
-                            </div>
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Bordered Table</h3>
                         </div>
-                        {%endfor%}
-                        <!-- END PANEL NO CONTROLS -->
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Date Joined</th>
+                                        <th>Remove User</th>
 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {%for user in users%}
+                                    <tr>
+                                        <td>{{user.id}}</td>
+                                        <td>{{user.name}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>{{user.date_joined}}</td>
+                                        <td><button data-user={{user.id}} type="button" class="btn btn-danger update-users"><i class="fa fa-trash-o"></i> REMOVE</button></td>
+                                    </tr>
+
+                                    {%endfor%}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-
+                    <!-- END BORDERED TABLE -->
                 </div>
+
             </div>
         </div>
+        <!-- END MAIN CONTENT -->
     </div>
-    <script type="text/javascript">
-        // function getCookie(name) {
-        //     let cookieValue = null;
-        //     if (document.cookie && document.cookie !== '') {
-        //         const cookies = document.cookie.split(';');
-        //         for (let i = 0; i < cookies.length; i++) {
-        //             const cookie = cookies[i].trim();
-        //             // Does this cookie string begin with the name we want?
-        //             if (cookie.substring(0, name.length + 1) === (name + '=')) {
-        //                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        //                 break;
-        //             }
-        //         }
-        //     }
-        //     return cookieValue;
-        // }
-        // const csrftoken = getCookie('csrftoken');
+    <!-- END MAIN -->
+    <div class="clearfix"></div>
 
-        // var makeChangeBtns = document.getElementsByClassName('makeChangebtn')
-        // for (var i = 0; i < makeChangeBtns.length; i++) {
-
-        //     makeChangeBtns[i].addEventListener('click', function() {
-        //         var productid = this.dataset.productid
-        //             // var productname = this.dataset.productname
-        //             // var productprice = this.dataset.productprice
-
-        //         fetch('/adminpanel/makeChanges/', {
-        //                 method: 'PUT',
-        //                 headers: {
-        //                     'Accept': 'application/json, text/plain, */*',
-        //                     'Content-Type': 'application/json',
-        //                     'X-CSRFToken': csrftoken,
-        //                 },
-        //                 body: JSON.stringify({
-        //                     'productid': productid,
-        //                     // 'productname': productname,
-        //                     // 'productprice': productprice
-        //                 }),
-        //             })
-        //             .then(response => response.json())
-        //             .then(data => {
-        //                 console.log('Success:', data);
-        //             })
-        //             .catch((error) => {
-        //                 console.error('Error:', error);
-        //             });
-        //         // location.reload()
-
-        //     })
-
-        // }
-    </script>
-
+    </div>
+    <script type="text/javascript" src="{% static 'js/admin/users.js'  %}"></script>
 
 </body>
 
