@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect
 # Create your views here.
 
-
+#ADMIN PANEL HOME
 def admin_panel(request):
 
     orders = OrderItem.objects.select_related(
@@ -38,7 +38,7 @@ def admin_panel(request):
 
     return render(request, 'index.html', context)
 
-
+#update an order status to DONE
 def update_order_status(request):
     data = json.loads(request.body.decode("utf-8"))
     print(data['orderid'])
