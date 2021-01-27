@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 import json
 from . models import *
+from .forms import RecommendProductForm
 import datetime
 from base64 import b64encode
 import base64
@@ -84,8 +85,10 @@ def store(request):
     # call method from utils.py
     data = cartData(request)
     cartItems = data['cartItems']
-
     products = Product.objects.all()
+    form = RecommendProductForm
+
+
     # get username from session
     if 'user' in request.session:
         user = request.session['user']
@@ -93,6 +96,7 @@ def store(request):
         user = "Guest User"
 
     context = {
+        
         'products': products,
         'user': user,
         'cartItems': cartItems

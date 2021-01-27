@@ -139,6 +139,13 @@
                     <div class="middle-side col-xs-12 col-sm-5">
                         <h4><a href="">{{product.name}}</a></h4>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim</p>
+                        <form method="POST" action="{%url 'recommend_product'%}">
+                            {%csrf_token%}
+                            <input type="hidden" name="product" value="{{product.id}}">
+                            <button type='submit'> Recommend</button>
+                        </form>
+
+
                     </div>
                     <div class="right-side col-xs-12 col-sm-4">
                         <p>Price: {{product.price|floatformat:2}}$</p>
