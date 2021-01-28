@@ -1,13 +1,64 @@
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
 function clearCart() {
     cart = {}
     location.reload()
     document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/"
 }
 
+
+
+
+var RecommendBtns = document.getElementsByClassName('set-recommend')
+
+for (var i = 0; i < RecommendBtns.length; i++) {
+
+    RecommendBtns[i].addEventListener('click', function() {
+        if (user != "Guest User") {
+            console.log('recommend clicked')
+            var productId = this.dataset.product
+            var url = '/recommend_product/'
+            fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken,
+                    },
+                    body: JSON.stringify({ 'productId': productId })
+                })
+                .then((response) => {
+                    return response.json()
+                })
+
+            .then((data) => {
+                console.log('data:', data)
+                location.reload()
+            })
+        } else {
+            alert('Please Login to recommend products')
+        }
+    })
+
+
+}
+
+
 var updateBtns = document.getElementsByClassName('update-cart')
-
-
-
 for (var i = 0; i < updateBtns.length; i++) {
 
     updateBtns[i].addEventListener('click', function() {

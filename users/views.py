@@ -122,8 +122,8 @@ def User_Profile(request):
                 }
                 orders.append(item)
 
-            for x in orders:
-                print(x['item'], x['quantity'],x['date_ordered'])
+            # for x in orders:
+            #     print(x['item'], x['quantity'],x['date_ordered'])
            
 
     context = {

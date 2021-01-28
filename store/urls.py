@@ -19,8 +19,6 @@ urlpatterns=[
     # path('update_item/',views.updateItem,name = "update_item"),
     path('process_order/',views.processOrder,name = "process_order"),
 
-    path('recommend_product',product_utils.recommend_product,name = "recommend_product")
-
-
+    path('recommend_product/',product_utils.recommend_product,name = "recommend_product"),
 
 ]

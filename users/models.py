@@ -10,6 +10,7 @@ class Users(AbstractBaseUser):
     password = models.CharField(max_length=255)
     # password=models.BinaryField(max_length=255)
     date_joined = models.DateTimeField(blank=True)
+    products_recommend = models.TextField(max_length=255)
 
     def __str__(self):
         return self.name

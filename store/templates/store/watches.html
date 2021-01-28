@@ -139,11 +139,14 @@
                     <div class="middle-side col-xs-12 col-sm-5">
                         <h4><a href="">{{product.name}}</a></h4>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim</p>
-                        <form method="POST" action="{%url 'recommend_product'%}">
-                            {%csrf_token%}
-                            <input type="hidden" name="product" value="{{product.id}}">
-                            <button type='submit'> Recommend</button>
-                        </form>
+                        <h4>{{product.total_recommendations}} people recommend this product</h4>
+                        <!-- <form method="POST" action="{%url 'recommend_product'%}">
+                            {%csrf_token%} -->
+                        {% if product.id not in user_recommendations%}
+                        <button data-product={{product.id}} class="set-recommend"> I recommend it!</button> {%else%}
+                        <button class="hidden" data-product={{product.id}} class="set-recommend"> I recommend it!</button> {%endif%}
+
+                        <!-- </form> -->
 
 
                     </div>

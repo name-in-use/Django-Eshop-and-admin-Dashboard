@@ -10,6 +10,8 @@ from base64 import b64encode
 import base64
 from users.models import Users
 from .utils import cookieCart, cartData, guestOrder
+import itertools
+import re
 # Create your views here.
 
 
@@ -88,15 +90,18 @@ def store(request):
     products = Product.objects.all()
     form = RecommendProductForm
 
-
     # get username from session
     if 'user' in request.session:
         user = request.session['user']
     else:
         user = "Guest User"
 
+    user_recommendations_ = Users.objects.get(name=user).products_recommend
+    print(user_recommendations_)
+    print('products found in recommendations:',list(map(int, re.findall('\d+', user_recommendations_))))
+
     context = {
-        
+        'user_recommendations':list(map(int, re.findall('\d+', user_recommendations_))),
         'products': products,
         'user': user,
         'cartItems': cartItems
