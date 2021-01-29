@@ -195,6 +195,7 @@
         </div>
         <script type="text/javascript" src="{% static 'js/store/cart.js'  %}"></script>
         <script type=text/javascript>
+        
             var profile = document.getElementById('usrprofile');
             if (user != 'Guest User')
                 profile.innerHTML = "Profile ";
@@ -207,7 +208,7 @@
             function submitFormData() {
                 var form = document.getElementById('form')
                 var total = '{{order.get_cart_total}}'
-                csrftoken = form.getElementsByTagName("input")[0].value
+                // csrftoken = form.getElementsByTagName("input")[0].value
 
                 console.log('payment button clicked')
 

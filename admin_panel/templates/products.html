@@ -20,8 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
     <!-- ICONS -->
     <link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/admin/apple-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/admin/favicon.png' %}">
-</head>
+    
 
 <body>
     <!-- WRAPPER -->
@@ -69,21 +68,7 @@
                         <li><a href="{%url 'admin_panel'%}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                         <li><a href="{%url 'products' %}" class="active"><i class="lnr lnr-code"></i> <span>Products</span></a></li>
                         <li><a href="{%url 'registered_users' %}" class=""><i class="lnr lnr-chart-bars"></i> <span>Users</span></a></li>
-                        <li><a href="" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
-                        <li><a href="" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
-                        <li>
-                            <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                            <div id="subPages" class="collapse ">
-                                <ul class="nav">
-                                    <li><a href="" class="">Profile</a></li>
-                                    <li><a href="" class="">Login</a></li>
-                                    <li><a href="" class="">Lockscreen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li><a href="" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
-                        <li><a href="" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
-                        <li><a href="" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
+
                     </ul>
                 </nav>
             </div>
@@ -108,7 +93,7 @@
                                 <form method="POST" action="{% url 'makeChanges' %}">
                                     {% csrf_token %}
                                     <div class="input-group">
-                                        <input hidden type="text" name="productid" value="{{product.id}}">
+                                        <input type="text" name="productid" value="{{product.id}}" class="form-control">
                                         <input type="text" name="productname" value="{{product.name}}" class="form-control" placeholder="Product name">
                                         <input type="text" name="productprice" value="{{product.price}}" class="form-control" placeholder="Product price">
 
@@ -128,56 +113,6 @@
         </div>
     </div>
     <script type="text/javascript">
-        // function getCookie(name) {
-        //     let cookieValue = null;
-        //     if (document.cookie && document.cookie !== '') {
-        //         const cookies = document.cookie.split(';');
-        //         for (let i = 0; i < cookies.length; i++) {
-        //             const cookie = cookies[i].trim();
-        //             // Does this cookie string begin with the name we want?
-        //             if (cookie.substring(0, name.length + 1) === (name + '=')) {
-        //                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        //                 break;
-        //             }
-        //         }
-        //     }
-        //     return cookieValue;
-        // }
-        // const csrftoken = getCookie('csrftoken');
-
-        // var makeChangeBtns = document.getElementsByClassName('makeChangebtn')
-        // for (var i = 0; i < makeChangeBtns.length; i++) {
-
-        //     makeChangeBtns[i].addEventListener('click', function() {
-        //         var productid = this.dataset.productid
-        //             // var productname = this.dataset.productname
-        //             // var productprice = this.dataset.productprice
-
-        //         fetch('/adminpanel/makeChanges/', {
-        //                 method: 'PUT',
-        //                 headers: {
-        //                     'Accept': 'application/json, text/plain, */*',
-        //                     'Content-Type': 'application/json',
-        //                     'X-CSRFToken': csrftoken,
-        //                 },
-        //                 body: JSON.stringify({
-        //                     'productid': productid,
-        //                     // 'productname': productname,
-        //                     // 'productprice': productprice
-        //                 }),
-        //             })
-        //             .then(response => response.json())
-        //             .then(data => {
-        //                 console.log('Success:', data);
-        //             })
-        //             .catch((error) => {
-        //                 console.error('Error:', error);
-        //             });
-        //         // location.reload()
-
-        //     })
-
-        // }
     </script>
 
 
