@@ -93,20 +93,29 @@ def store(request):
     # get username from session
     if 'user' in request.session:
         user = request.session['user']
-        user_recommendations_ = Users.objects.get(name=user).products_recommend
-        print(user_recommendations_)
-        print('products found in recommendations:', list(
-            map(int, re.findall('\d+', user_recommendations_))))
-        context = {
-            'user_recommendations': list(map(int, re.findall('\d+', user_recommendations_))),
-            'products': products,
-            'user': user,
-            'cartItems': cartItems
-        }
+        if user == "Guest User":
+            context = {
+
+                'products': products,
+                'user': user,
+                'cartItems': cartItems
+            }
+        else:
+            user_recommendations_ = Users.objects.get(
+                name=user).products_recommend
+            print(user_recommendations_)
+            print('products found in recommendations:', list(
+                map(int, re.findall('\d+', user_recommendations_))))
+            context = {
+                'user_recommendations': list(map(int, re.findall('\d+', user_recommendations_))),
+                'products': products,
+                'user': user,
+                'cartItems': cartItems
+            }
     else:
         user = "Guest User"
         context = {
-            
+
             'products': products,
             'user': user,
             'cartItems': cartItems

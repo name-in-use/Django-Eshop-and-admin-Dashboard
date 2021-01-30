@@ -90,10 +90,12 @@ def makeChanges(request):
         productPRICE = request.POST['productprice']
         print(productNAME, productPRICE, productID)
 
-        product = Product.objects.get(id=productID)
-        product.name = productNAME
-        product.price = productPRICE
-        product.save()
+        # product = Product.objects.get(id=productID)
+        # product.name = productNAME
+        # product.price = productPRICE
+        # product.save()
+        product = Product.objects.filter(id=productID).update(name=productNAME,price = productPRICE)
+       
 
     return HttpResponseRedirect('/adminpanel/products/')
 
