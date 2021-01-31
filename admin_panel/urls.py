@@ -9,5 +9,7 @@ urlpatterns = [
     path('makeChanges/', views.makeChanges, name="makeChanges"),
     path('registered_users/', views.registered_users, name="registered_users"),
     path('deleteUsers/', views.deleteUsers, name="deleteUsers"),
+
+    path('new_product/', views.Upload_New_Product_View, name="upload_new_product"),
     
 ]

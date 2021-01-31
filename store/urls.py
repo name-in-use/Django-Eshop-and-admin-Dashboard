@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from . import product_utils
-
+from . import contact_us
 urlpatterns=[
     path('',views.home_page,name = "home_page"),
     path('store/',views.store,name = "store"),
@@ -14,11 +14,12 @@ urlpatterns=[
     path('cart/',views.cart,name = "cart"),
     path('contact/',views.contactUs,name = "contact"),
     path('checkout/',views.checkout,name = "checkout"),
-    
-    path('search_product/',views.searchProduct,name = "searchProduct"),
-    # path('update_item/',views.updateItem,name = "update_item"),
     path('process_order/',views.processOrder,name = "process_order"),
 
+    path('search_product/',views.searchProduct,name = "searchProduct"),
     path('recommend_product/',product_utils.recommend_product,name = "recommend_product"),
+
+    path('contact_us/',contact_us.contact_us,name = "contact_us"),
+
 
 ]

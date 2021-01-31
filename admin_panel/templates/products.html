@@ -20,102 +20,118 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
     <!-- ICONS -->
     <link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/admin/apple-icon.png' %}">
-    
 
-<body>
-    <!-- WRAPPER -->
-    <div id="wrapper">
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="brand">
-                <a href="index.html"><img src="{% static 'images/admin/admin.jpg' %}" alt="Klorofil Logo" class="img-responsive logo"></a>
-            </div>
-            <div class="container-fluid">
-                <div class="navbar-btn">
-                    <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+
+    <body>
+        <!-- WRAPPER -->
+        <div id="wrapper">
+            <!-- NAVBAR -->
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="brand">
+                    <a href="index.html"><img src="{% static 'images/admin/admin.jpg' %}" alt="Klorofil Logo" class="img-responsive logo"></a>
                 </div>
-                <form class="navbar-form navbar-left">
-                    <div class="input-group">
-                        <input type="text" value="" class="form-control" placeholder="Search dashboard...">
-                        <span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
-                    </div>
-                </form>
-
-                <div id="navbar-menu">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-                                <i class="lnr lnr-alarm"></i>
-                                <span class="badge bg-danger">5</span>
-                            </a>
-                        </li>
-                        <li class="dropdown"></li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'images/admin/user.png' %}" class="img-circle" alt="Avatar"> <span>Admin</span></a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- END NAVBAR -->
-        <!-- LEFT SIDEBAR -->
-        <div id="sidebar-nav" class="sidebar">
-            <div class="sidebar-scroll">
-                <nav>
-                    <ul class="nav">
-                        <li><a href="{%url 'admin_panel'%}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-                        <li><a href="{%url 'products' %}" class="active"><i class="lnr lnr-code"></i> <span>Products</span></a></li>
-                        <li><a href="{%url 'registered_users' %}" class=""><i class="lnr lnr-chart-bars"></i> <span>Users</span></a></li>
-
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <!-- END LEFT SIDEBAR -->
-        <!-- MAIN -->
-        <div class="main">
-            <!-- MAIN CONTENT -->
-            <div class="main-content">
                 <div class="container-fluid">
-                    <h3 class="page-title">Products</h3>
-                    <div class="row"> </div>
-                    <div class="col-md-4">
-                        <!-- PANEL NO CONTROLS -->
-                        {%for product in products%}
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Product name: {{product.name}} </h3>
-                            </div>
-                            <div class="panel-body">
-
-                                <form method="POST" action="{% url 'makeChanges' %}">
-                                    {% csrf_token %}
-                                    <div class="input-group">
-                                        <input type="text" name="productid" value="{{product.id}}" class="form-control">
-                                        <input type="text" name="productname" value="{{product.name}}" class="form-control" placeholder="Product name">
-                                        <input type="text" name="productprice" value="{{product.price}}" class="form-control" placeholder="Product price">
-
-                                    </div>
-                                    <br>
-                                    <button type="submit" class="makeChangebtn btn-primary">Submit changes</button>
-                                </form>
-                            </div>
+                    <div class="navbar-btn">
+                        <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+                    </div>
+                    <form class="navbar-form navbar-left">
+                        <div class="input-group">
+                            <input type="text" value="" class="form-control" placeholder="Search dashboard...">
+                            <span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
                         </div>
-                        {%endfor%}
-                        <!-- END PANEL NO CONTROLS -->
+                    </form>
+
+                    <div id="navbar-menu">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+                                    <i class="lnr lnr-alarm"></i>
+                                    <span class="badge bg-danger">5</span>
+                                </a>
+                            </li>
+                            <li class="dropdown"></li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'images/admin/user.png' %}" class="img-circle" alt="Avatar"> <span>Admin</span></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- END NAVBAR -->
+            <!-- LEFT SIDEBAR -->
+            <div id="sidebar-nav" class="sidebar">
+                <div class="sidebar-scroll">
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="{%url 'admin_panel'%}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                            <li><a href="{%url 'products' %}" class="active"><i class="lnr lnr-code"></i> <span>Products</span></a></li>
+                            <li><a href="{%url 'registered_users' %}" class=""><i class="lnr lnr-chart-bars"></i> <span>Users</span></a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- END LEFT SIDEBAR -->
+            <!-- MAIN -->
+            <div class="main">
+                <!-- MAIN CONTENT -->
+                <div class="main-content">
+                    <div class="container-fluid">
+                        <h3 class="page-title">Total Products: {{total_products}} </h3>
+                        <div class="row"> </div>
+                        <div class="col-md-4">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <!-- <h3 class="panel-title">Product name: {{product.name}} </h3> -->
+                                </div>
+                                <div class="panel-body">
+
+                                    <form method="POST" action="{% url 'upload_new_product' %}">
+                                        {% csrf_token %}
+                                        <div class="input-group">
+                                            {{new_product_form}}
+                                        </div>
+                                        <br>
+                                        <button type="submit" class="makeChangebtn btn-primary">Submit changes</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- PANEL NO CONTROLS -->
+                            {%for product in products%}
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Product name: {{product.name}} </h3>
+                                </div>
+                                <div class="panel-body">
+
+                                    <form method="POST" action="{% url 'makeChanges' %}">
+                                        {% csrf_token %}
+                                        <div class="input-group">
+                                            <input type="text" name="productid" value="{{product.id}}" class="form-control">
+                                            <input type="text" name="productname" value="{{product.name}}" class="form-control" placeholder="Product name">
+                                            <input type="text" name="productprice" value="{{product.price}}" class="form-control" placeholder="Product price">
+
+                                        </div>
+                                        <br>
+                                        <button type="submit" class="makeChangebtn btn-primary">Submit changes</button>
+                                    </form>
+                                </div>
+                            </div>
+                            {%endfor%}
+                            <!-- END PANEL NO CONTROLS -->
+
+                        </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
-    <script type="text/javascript">
-    </script>
+        <script type="text/javascript">
+        </script>
 
 
-</body>
+    </body>
 
 </html>

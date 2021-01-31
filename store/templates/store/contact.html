@@ -146,17 +146,19 @@
             </div>
             <div class="contact_form">
                 <h2>Feedback</h2>
-                <form>
-                    <div class="col-md-6 to">
-                        <input type="text" class="text" value="Name">
-                        <input type="text" class="text" value="Email">
-                        <input type="text" class="text" value="Subject">
-                    </div>
-                    <div class="col-md-6 text">
-                        <textarea value="Message">Message</textarea>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="but__center"><input type="submit" value="Send message &gt;&gt;"></div>
+                <!-- <form method="POST" action="{% url 'contact_us' %}"> -->
+                <form method="POST" action=""></form>
+                {% csrf_token %}
+                <div class="col-md-6 to">
+                    <!-- <input type="text" class="text" value="Name"> -->
+                    <input type="text" name="email" class="text" placeholder="Email">
+                    <input type="text" name="subject" class="text" placeholder="Subject">
+                </div>
+                <div class="col-md-6 text">
+                    <textarea name="message" placeholder="Message">Message</textarea>
+                </div>
+                <div class="clearfix"></div>
+                <div class="but__center"><input type="submit" value="Send message &gt;&gt;"></div>
                 </form>
             </div>
         </div>

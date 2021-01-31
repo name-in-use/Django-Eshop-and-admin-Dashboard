@@ -26,7 +26,13 @@ SECRET_KEY = '6f)gw34tpj0)csjk#69o0z@4*p=k(mt$3*7(495y(a^!xq&8$t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
+#EMAIL SENDER
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER =  ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 #The Hasher you are using
 PASSWORD_HASHERS = (

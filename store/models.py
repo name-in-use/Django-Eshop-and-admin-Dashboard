@@ -17,7 +17,6 @@ import base64
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
-    digital = models.BooleanField(default=False, null=True)
     image = models.TextField(null=True)
     total_recommendations = models.IntegerField(default='0')
     # image = models.BinaryField(blank=True)
