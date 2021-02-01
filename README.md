@@ -1,4 +1,4 @@
-# Django eshop simulation
+# Django Eshop 
 ![Alt text](https://github.com/name-in-use/Django-Eshop/blob/master/Product_Database_Images/website.JPG?raw=true) 
 
 # Project Description
