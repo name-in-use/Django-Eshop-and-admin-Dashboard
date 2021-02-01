@@ -10,15 +10,9 @@ from users.models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect
 
-# database connection
-import mysql.connector
-from mysql.connector import Error
-from mysql.connector import errorcode
 # Create your views here.
 
-# ADMIN PANEL HOME
-
-
+# ADMIN PANEL HOME PAGE
 def admin_panel(request):
 
     orders = OrderItem.objects.select_related(
@@ -34,7 +28,6 @@ def admin_panel(request):
         total = productPrice*Product_quantity
         totalIncome += total
 
-    # totalProductsSelled = OrderItem.objects.values('order').count()
     totalProductsSelled = OrderItem.objects.aggregate(Sum('quantity'))
     # print(totalProductsSelled)
     totalOrders = OrderItem.objects.values('order').distinct().count()
@@ -49,9 +42,8 @@ def admin_panel(request):
 
     return render(request, 'index.html', context)
 
+
 # update an order status to DONE
-
-
 def update_order_status(request):
     data = json.loads(request.body.decode("utf-8"))
     print(data['orderid'])
@@ -81,21 +73,6 @@ def deleteUsers(request):
     return JsonResponse(data)
 
 #------------Product managment---------------#
-
-
-def products(request):
-    form = Upload_New_Product_Form()
-    products = Product.objects.all()
-    total_products = Product.objects.values('name').count()
-
-    context = {
-        'total_products':total_products,
-        'products': products,
-        'new_product_form': form
-    }
-    return render(request, 'products.html', context)
-
-
 @csrf_exempt
 def makeChanges(request):
     if request.method == 'POST':
@@ -114,16 +91,42 @@ def makeChanges(request):
     return HttpResponseRedirect('/adminpanel/products/')
 
 
+def products(request):
+    form = Upload_New_Product_Form()
+    products = Product.objects.all()
+    total_products = Product.objects.values('name').count()
+
+    if request.method == 'POST':
+        form = Upload_New_Product_Form(
+            request.POST or None, request.FILES or None)
+        if form.is_valid():
+            _id = request.POST['product_id']
+            name = request.POST['name']
+            price = request.POST['price']
+            image = request.FILES['image']
+            print(image)
+            new_product = Product.objects.create(
+                id=_id, name=name, price=price, image=image, total_recommendations='0')
+            new_product.save()
+            return redirect('products')
+
+    context = {
+        'total_products': total_products,
+        'products': products,
+        'new_product_form': form
+    }
+    return render(request, 'products.html', context)
+
+
 def Upload_New_Product_View(request):
     if request.method == 'POST':
 
         _id = request.POST['product_id']
         name = request.POST['name']
         price = request.POST['price']
-        image = request.POST['image']
+        image = request.FILES['image']
         print(image)
-        new_product = Product.objects.create(id=_id,name=name,price=price,image=image,total_recommendations='0')
+        new_product = Product.objects.create(
+            id=_id, name=name, price=price, image=image, total_recommendations='0')
         new_product.save()
         return redirect('products')
-
-

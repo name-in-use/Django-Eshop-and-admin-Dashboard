@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from .views import store
 import json
 from django.http import JsonResponse
+
 def recommend_product(request):
     data = json.loads(request.body.decode("utf-8"))
     # total_recommendations = Product.objects.values('total_recommendations', flat=True)

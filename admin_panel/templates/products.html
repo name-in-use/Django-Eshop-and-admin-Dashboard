@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="panel-body">
 
-                                    <form method="POST" action="{% url 'upload_new_product' %}">
+                                    <form method="POST" action="{% url 'products' %}" enctype='multipart/form-data'>
                                         {% csrf_token %}
                                         <div class="input-group">
                                             {{new_product_form}}

@@ -156,24 +156,6 @@ def contactUs(request):
     }
     return render(request, 'store/contact.html', context)
 
-# def searchProduct(request):
-#     data = cartData(request)
-#     cartItems = data['cartItems']
-#     if 'user' in request.session:
-#         user = request.session['user']
-#     else:
-#         user = "Guest User"
-
-#     product_to_search = request.GET.get('product')
-#     products = Product.objects.filter(Q(name__icontains=product_to_search))
-#     # print(products)
-#     context = {
-#         'products': products,
-#         'user': user,
-#         # 'images' :[base64.b64encode(product_image.image).decode() for product_image in products],
-#         'cartItems': cartItems
-#     }
-#     return render(request, 'store/store.html', context)
 
 
 def cart(request):
@@ -226,34 +208,6 @@ def checkout(request):
     return render(request, 'store/checkout.html', context)
 
 
-# def updateItem(request):
-#     data = json.loads(request.body)
-#     productId = data['productId']
-#     action = data['action']
-
-#     user = data['user']
-#     customer = Users.objects.get(name=user).id
-
-#     print('Action:', action)
-#     print('productId:', productId)
-#     print('Customer:', customer)
-
-#     product = Product.objects.get(id=productId)
-#     order, created = Order.objects.get_or_create(
-#         customer=customer, complete=False)
-
-#     orderItem, created = OrderItem.objects.get_or_create(
-#         order=order, product=product)
-#     if action == 'add':
-#         orderItem.quantity = (orderItem.quantity+1)
-#     elif action == 'remove':
-#         orderItem.quantity = (orderItem.quantity-1)
-#     orderItem.save()
-
-#     if orderItem.quantity <= 0:
-#         orderItem.delete()
-
-#     return JsonResponse('Item was added', safe=False)
 
 
 @csrf_exempt
