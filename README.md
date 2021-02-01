@@ -1,4 +1,5 @@
 # Django eshop simulation
+![Alt text]("https://github.com/name-in-use/Django-Eshop/blob/master/Product_Database_Images/website.JPG") 
 
 # Project Description
 - Backend: Python, Django
