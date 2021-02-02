@@ -12,9 +12,10 @@ def contact_us(request):
         send_mail(
             subject,
             message,
-           settings.EMAIL_HOST_USER,
-           [sender_email],
+           sender_email,
+           ['settings.EMAIL_HOST_USER'],
             fail_silently=False,
         )
+
 
     return redirect('contact')

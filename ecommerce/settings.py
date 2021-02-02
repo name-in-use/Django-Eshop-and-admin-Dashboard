@@ -27,12 +27,18 @@ SECRET_KEY = '6f)gw34tpj0)csjk#69o0z@4*p=k(mt$3*7(495y(a^!xq&8$t'
 DEBUG = True
 
 #EMAIL SENDER
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER =  ''
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER =  ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = '' # this email will be used to send emails
+EMAIL_HOST_PASSWORD = '' # host email password required
 
 #The Hasher you are using
 PASSWORD_HASHERS = (
