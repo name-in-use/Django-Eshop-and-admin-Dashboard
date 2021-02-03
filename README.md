@@ -1,5 +1,8 @@
 # Django Eshop 
+Home Page
 ![Alt text](https://github.com/name-in-use/Django-Eshop/blob/master/Product_Database_Images/website.JPG?raw=true) 
+Store
+![Alt text](https://github.com/name-in-use/Django-Eshop/blob/master/Product_Database_Images/Store.JPG?raw=true) 
 
 # Project Description
 - Backend: Python, Django
