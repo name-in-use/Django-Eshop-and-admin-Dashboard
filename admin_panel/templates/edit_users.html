@@ -19,7 +19,7 @@
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
     <!-- ICONS -->
-
+    
 </head>
 
 <body>
@@ -68,7 +68,7 @@
                         <li><a href="{%url 'admin_panel'%}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                         <li><a href="{%url 'products' %}" class=""><i class="lnr lnr-code"></i> <span>Products</span></a></li>
                         <li><a href="{%url 'registered_users' %}" class="active"><i class="lnr lnr-chart-bars"></i> <span>Users</span></a></li>
-
+                        
                 </nav>
             </div>
         </div>
@@ -85,31 +85,31 @@
                         </div>
                         <div class="panel-body">
                             <table class="table table-bordered">
-                                <thead>
+                                <!-- <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Date Joined</th>
-                                        <th>Remove User</th>
-                                        <th>Edit User</th>
+                                        <th>Save User</th>
 
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {%for user in users%}
+                                </thead> -->
+                                <!-- <tbody> -->
+                                   
+                                    <form method='POST' action="{% url 'SaveEditedUser' user.id %}">
                                     <tr>
-                                        <td>{{user.id}}</td>
-                                        <td>{{user.name}}</td>
-                                        <td>{{user.email}}</td>
-                                        <td>{{user.date_joined}}</td>
-                                        <td><button data-user={{user.id}} type="button" class="btn btn-danger update-users"><i class="fa fa-trash-o"></i> REMOVE</button></td>
-                                        <form action="{% url 'editUsers' user.id %}">
-                                            <td><button type="submit" class="btn btn-primary" >Edit</button></td>
-                                        </form>
+                                        {{form}}
+                                        <!-- <td><input name="userid" value="{{users.id}}"></td>
+                                        <td><input name="username" value="{{users.name}}"></td>
+                                        <td><input name="useremail" value="{{users.email}}"></td>
+                                        <td>{{users.date_joined}}</td> -->
+                                        <td><button type="submit" class="btn btn-primary "><i class="fa fa-trash-o"></i> SAVE</button></td>
                                     </tr>
-                                    {%endfor%}
-                                </tbody>
+                                </form>
+
+                                    
+                                <!-- </tbody> -->
                             </table>
                         </div>
                     </div>

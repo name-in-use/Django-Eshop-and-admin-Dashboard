@@ -12,5 +12,7 @@ class Users(AbstractBaseUser):
     date_joined = models.DateTimeField(blank=True)
     products_recommend = models.TextField(max_length=255)
 
+    USERNAME_FIELD = "name"
+
     def __str__(self):
         return self.name

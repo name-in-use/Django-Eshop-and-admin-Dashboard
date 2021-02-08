@@ -4,7 +4,7 @@ from django.http import JsonResponse
 import json
 from django.db.models import Sum
 
-from .forms import Upload_New_Product_Form
+from .forms import Upload_New_Product_Form, edit_user_form
 from store.models import *
 from users.models import *
 from django.views.decorators.csrf import csrf_exempt
@@ -13,6 +13,8 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 
 # ADMIN PANEL HOME PAGE
+
+
 def admin_panel(request):
 
     orders = OrderItem.objects.select_related(
@@ -72,7 +74,42 @@ def deleteUsers(request):
 
     return JsonResponse(data)
 
+
+@csrf_exempt
+def editUsers(request, pk):
+    try:
+        usermodel = User.objects.get(id=pk)
+    except User.DoesNotExist:
+        pass
+    form = edit_user_form(instance=usermodel)
+
+    context = {
+        'user': usermodel,
+        'form': form
+    }
+    return render(request, 'edit_users.html', context)
+
+
+@csrf_exempt
+def SaveEditedUser(request,pk):
+    
+    if request.method == 'POST':
+        form = edit_user_form(request.POST)
+        if form.is_valid():
+            user = Users.objects.filter(id=pk).update(
+             name=form.cleaned_data['name'], email=form.cleaned_data['email'])
+
+            return HttpResponseRedirect('/adminpanel/registered_users/')
+    # if request.method == 'POST':
+    #     USERID = request.POST['userid']
+    #     USERNAME = request.POST['username']
+    #     USEREMAIL = request.POST['useremail']
+    #     user = Users.objects.filter(id=USERID).update(
+    #         name=USERNAME, email=USEREMAIL)
+    # return HttpResponseRedirect('/adminpanel/registered_users/')
 #------------Product managment---------------#
+
+
 @csrf_exempt
 def makeChanges(request):
     if request.method == 'POST':

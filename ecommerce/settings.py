@@ -16,7 +16,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ['192.168.2.5','localhost', '127.0.0.1','192.168.2.6']
+ALLOWED_HOSTS = ['192.168.2.5','localhost', '127.0.0.1','192.168.2.6','192.168.2.4']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
